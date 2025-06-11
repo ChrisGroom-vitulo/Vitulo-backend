@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from routes import cattle_routes
 
 app = FastAPI()
 
@@ -11,6 +12,4 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/")
-def read_root():
-    return {"message": "Vitulo backend is live"}
+app.include_router(cattle_routes.router)
